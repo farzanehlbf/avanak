@@ -1,12 +1,13 @@
 <?php
+
 namespace Avanak\Services;
 
 use Avanak\Contracts\AvanakClientInterface;
 
 /**
- * Service class for managing account-related operations.
+ * Service class for managing audio file operations.
  */
-class AccountService
+class AudioService
 {
     private AvanakClientInterface $avanakClient;
 
@@ -18,18 +19,14 @@ class AccountService
         $this->avanakClient = $avanakClient;
     }
 
-
-
     /**
-     * Get the account status via the client.
+     * Upload an audio file.
      *
+     * @param string $base64Audio
      * @return array
      */
-    public function getAccountStatus(): array
+    public function uploadAudio(string $base64Audio, string $password, string $title, bool $persist, string $callFromMobile = ''): array
     {
-        return $this->avanakClient->getAccountStatus();
+        return $this->avanakClient->uploadAudio($base64Audio, $password, $title, $persist, $callFromMobile);
     }
-
-
-
 }
