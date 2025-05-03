@@ -13,8 +13,9 @@ class OtpService
         $this->avanakClient = $avanakClient;
     }
 
-    public function sendOtp(string $phoneNumber): array
+    public function sendOtp(string $phoneNumber, int $length = 6, ?int $optionalCode = 0, ?int $serverId = 0): array
     {
-        return $this->avanakClient->sendOtp($phoneNumber);
+        return $this->avanakClient->sendOtp($phoneNumber, $length, $optionalCode, $serverId);
     }
+
 }
