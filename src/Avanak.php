@@ -59,4 +59,22 @@ class Avanak
     {
         return new TtsService($this->client);
     }
+    public function getQuickSend(string $token, string $password, int $quickSendID)
+    {
+        return $this->tts()->getQuickSend($token, $password, $quickSendID);
+    }
+
+    /**
+     * Download audio message.
+     *
+     * @param string $messageId
+     * @return mixed
+     */
+    public function downloadAudioMessage(string $messageId)
+    {
+        return $this->audio()->downloadAudioMessage($messageId);
+    }
+
+
+
 }

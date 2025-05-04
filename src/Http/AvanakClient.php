@@ -13,19 +13,17 @@ class AvanakClient implements AvanakClientInterface
     private HttpClientInterface $httpClient;
     private string $apiToken;
     private string $apiUrl;
-    private $baseUrl;
 
 
     /**
      * @param HttpClientInterface $httpClient
      * @param string $apiUrl
      */
-    public function __construct(HttpClientInterface $httpClient, string $apiUrl, string $baseUrl)
+    public function __construct(HttpClientInterface $httpClient, string $apiUrl)
     {
         $this->httpClient = $httpClient;
         $this->apiToken = $_ENV['AVANAK_API_TOKEN'];
         $this->apiUrl = $apiUrl;
-        $this->baseUrl = $baseUrl;
     }
 
     /**
@@ -45,7 +43,6 @@ class AvanakClient implements AvanakClientInterface
      * {@inheritdoc}
      */
     public function sendOtp(
-        string $token,
         string $password,
         int    $length,
         string $number,
@@ -55,7 +52,7 @@ class AvanakClient implements AvanakClientInterface
     {
         $response = $this->httpClient->request('GET', $this->apiUrl . '/SendOTP', [
             'query' => [
-                'Token' => $token,
+                'Token' => $this->apiToken,
                 'password' => $password,
                 'Length' => $length,
                 'Number' => $number,
@@ -87,7 +84,6 @@ class AvanakClient implements AvanakClientInterface
     }
 
     public function generateTTS(
-        string $token,
         string $password,
         string $text,
         string $title,
@@ -97,7 +93,7 @@ class AvanakClient implements AvanakClientInterface
     {
         $response = $this->httpClient->request('POST', $this->apiUrl . '/GenerateTTS', [
             'form_params' => [
-                'Token' => $_ENV['AVANAK_API_TOKEN'],
+                'Token' => $this->apiToken,
                 'password' => $password,
                 'Text' => $text,
                 'Title' => $title,
@@ -108,6 +104,147 @@ class AvanakClient implements AvanakClientInterface
 
         return json_decode($response->getBody(), true);
     }
+    public function quickSendWithTTS(
+        string $password,
+        string $text,
+        string $title,
+        string $number,
+        string $speaker,
+        string $callFromMobile
+    ): array
+    {
+        $response = $this->httpClient->request('POST', $this->apiUrl . '/QuickSendWithTTS', [
+            'form_params' => [
+                'Token' => $this->apiToken,
+                'password' => $password,
+                'Text' => $text,
+                'Title' => $title,
+                'Number' => $number,
+                'Speaker' => $speaker,
+                'CallFromMobile' => $callFromMobile
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function quickSend(
+        string $password,
+        int $messageId,
+        string $number,
+        bool $vote = false,
+        int $serverId = 0,
+        bool $recordVoice = false,
+        int $recordVoiceDuration = 0
+    ): array {
+        $response = $this->httpClient->request('POST', $this->apiUrl . '/QuickSend', [
+            'form_params' => [
+                'Token' => $this->apiToken,
+                'Password' => $password,
+                'MessageID' => $messageId,
+                'Number' => $number,
+                'Vote' => $vote ? 'true' : 'false',
+                'ServerID' => $serverId,
+                'RecordVoice' => $recordVoice ? 'true' : 'false',
+                'RecordVoiceDuration' => $recordVoiceDuration
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+    public function getQuickSend(
+        string $password,
+        int $quickSendID
+    ): array {
+        $response = $this->httpClient->request('POST', $this->apiUrl . '/GetQuickSend', [
+            'form_params' => [
+                'Token' => $this->apiToken,
+                'Password' => $password,
+                'QuickSendID' => $quickSendID,
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    /**
+     * پیاده‌سازی متد دانلود پیام صوتی.
+     *
+     * @param  string  $messageId
+     * @return mixed
+     */
+    // در کلاس AvanakClient
+    public function downloadAudioMessage(string $messageId)
+    {
+        $response = $this->httpClient->request('GET', $this->apiUrl . '/DownloadMessage', [
+            'query' => [
+                'Token' => $this->apiToken,
+                'MessageID' => $messageId,
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+
+    }
+
+    public function getMessageDetails(string $messageId)
+    {
+        $response = $this->httpClient->request('GET', $this->apiUrl . '/GetMessage', [
+            'query' => [
+                'Token' => $this->apiToken,
+                'MessageID' => $messageId,
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    // در کلاس AvanakClient
+    public function deleteAudioMessage(string $messageId): array
+    {
+        $response = $this->httpClient->request('GET', $this->apiUrl . '/DeleteMessage', [
+            'query' => [
+                'Token' => $this->apiToken,
+                'MessageID' => $messageId,
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function getMessages()
+    {
+        $response = $this->httpClient->request('GET', $this->apiUrl . '/GetMessages', [
+            'query' => [
+                'Token' => $this->apiToken,
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function getQuickSendStatistics(string $startDateTime, string $endDateTime): array
+    {
+        $response = $this->httpClient->request('GET', $this->apiUrl . '/GetQuickSendStatistics', [
+            'query' => [
+                'Token' => $this->apiToken,
+                'StartDateTime' => $startDateTime,
+                'EndDateTime' => $endDateTime,
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 }

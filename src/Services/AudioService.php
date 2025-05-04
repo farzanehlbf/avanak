@@ -29,4 +29,35 @@ class AudioService
     {
         return $this->avanakClient->uploadAudio($base64Audio, $password, $title, $persist, $callFromMobile);
     }
+
+    /**
+     * دانلود فایل صوتی بر اساس شناسه پیام.
+     *
+     * @param  string  $messageId
+     * @return mixed
+     */
+    public function downloadAudioMessage(string $messageId)
+    {
+        return $this->avanakClient->downloadAudioMessage($messageId);
+    }
+
+    public function getMessageDetails(string $messageId)
+    {
+        return $this->avanakClient->getMessageDetails($messageId);
+    }
+
+    public function deleteAudioMessage(string $messageId): array
+    {
+        return $this->avanakClient->deleteAudioMessage($messageId);
+    }
+
+    public function getMessages()
+    {
+        return $this->avanakClient->getMessages();
+    }
+
+    public function getQuickSendStatistics(string $startDateTime, string $endDateTime): array
+    {
+        return $this->avanakClient->getQuickSendStatistics($startDateTime, $endDateTime);
+    }
 }
