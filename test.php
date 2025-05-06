@@ -35,7 +35,7 @@ print_r($otpResponse);*/
 //متد وب سرویس آپلود فایل صوتی (UploadMessageBase64)
 
 /*$audioService = new AudioService($avanakClient);
-$filePath = __DIR__ . '/src/Audio/audio_files/hello.mp3';
+$filePath = __DIR__ . '/src/Audio/audio_files/feri.m4a';
 $audioFile = file_get_contents($filePath);
 $base64Audio = base64_encode($audioFile);
 $title = 'hello';
@@ -52,7 +52,7 @@ print_r($audioResponse);*/
 //// استفاده از سرویس TTS برای تولید صوت آواخوان
 
 
-/*$text = "سلام .تست";
+/*$text = "سرور شماره سه بررسی شود - هشدار قطع دسترسی";
 $title = "فایل صوتی جدید";
 $speaker = "female";
 $callFromMobile = "";
@@ -94,7 +94,7 @@ $callFromMobile = "";
 $ttsService = new TtsService($avanakClient);
 $quickSendResponse = $ttsService->quickSend(
     $password,
-    36217865,              // MessageID (مثلاً ID صوتی که در سامانه آپلود شده)
+    36222488,              // MessageID (مثلاً ID صوتی که در سامانه آپلود شده)
     $number,     // Number
     false,             // Vote
     0,                 // ServerID
@@ -109,7 +109,7 @@ print_r($quickSendResponse);*/
     // دریافت وضعیت ارسال سریع
 
     $ttsService = new TtsService($avanakClient);
-    $quickSendStatus = $ttsService->getQuickSend($password, 36217661);
+    $quickSendStatus = $ttsService->getQuickSend($password, 81423034);
 
     echo "Quick Send Status:\n";
     print_r($quickSendStatus);
@@ -120,7 +120,7 @@ print_r($quickSendResponse);*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //متد دانلود فایل صوتی (DownloadMessage)
-/*
+
 $messageId = "36217661";
 
 try {
@@ -128,7 +128,7 @@ try {
     $audioData = $avanakClient->downloadAudioMessage($messageId);
 
     // مسیر ذخیره‌سازی فایل صوتی (مسیر کامل به همراه نام فایل)
-    $filePath = __DIR__ . '/src/Audio/audio_files/audio_message_' . $messageId . '.mp3';
+    $filePath = __DIR__ . '/src/Audio/audio_files/audio_message_' . $messageId;
 
     // ذخیره‌سازی داده‌های صوتی در فایل
     file_put_contents($filePath, $audioData);
@@ -136,11 +136,11 @@ try {
     print_r($audioData);
 } catch (\Exception $e) {
     echo "Error: " . $e->getMessage();
-}*/
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //متد مشخصات فایل صوتی (GetMessage)
 
-/*$messageId = "36217661";
+/*$messageId = "36221730";
 
 try {
     // دریافت مشخصات پیام صوتی

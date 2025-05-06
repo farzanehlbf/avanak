@@ -28,7 +28,7 @@ Avanak/
 If installing locally:
 
 ```bash
-composer require path/to/avanak
+composer require feridev/avanak
 ```
 
 Or, add to your `composer.json`:
@@ -41,7 +41,7 @@ Or, add to your `composer.json`:
   }
 ],
 "require": {
-  "your-vendor/avanak": "*"
+  "feridev/avanak": "*"
 }
 ```
 

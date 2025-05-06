@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="C:\Users\fltuf\Desktop\avanak\phpunit.xml" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.015499">
+    <testsuite name="Avanak Test Suite" tests="3" assertions="3" errors="0" failures="0" skipped="0" time="0.015499">
+      <testsuite name="Tests\Unit\AvanakClientTest" file="C:\Users\fltuf\Desktop\avanak\tests\Unit\AvanakClientTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.013654">
+        <testcase name="testDownloadAudioMessage" file="C:\Users\fltuf\Desktop\avanak\tests\Unit\AvanakClientTest.php" line="18" class="Tests\Unit\AvanakClientTest" classname="Tests.Unit.AvanakClientTest" assertions="1" time="0.013654"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\OtpServiceTest" file="C:\Users\fltuf\Desktop\avanak\tests\Unit\OtpServiceTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.001378">
+        <testcase name="testSendOtp" file="C:\Users\fltuf\Desktop\avanak\tests\Unit\OtpServiceTest.php" line="22" class="Tests\Unit\OtpServiceTest" classname="Tests.Unit.OtpServiceTest" assertions="1" time="0.001378"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\TtsServiceTest" file="C:\Users\fltuf\Desktop\avanak\tests\Unit\TtsServiceTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.000467">
+        <testcase name="testGenerateTTS" file="C:\Users\fltuf\Desktop\avanak\tests\Unit\TtsServiceTest.php" line="21" class="Tests\Unit\TtsServiceTest" classname="Tests.Unit.TtsServiceTest" assertions="1" time="0.000467"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>

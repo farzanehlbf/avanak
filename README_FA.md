@@ -28,7 +28,7 @@ Avanak/
 اگر این پکیج را به صورت محلی ساخته‌اید:
 
 ```bash
-composer require path/to/avanak
+composer require feridev/avanak
 ```
 
 یا در composer.json:
@@ -41,7 +41,7 @@ composer require path/to/avanak
   }
 ],
 "require": {
-  "your-vendor/avanak": "*"
+  "feridev/avanak": "*"
 }
 ```
 
